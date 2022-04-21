@@ -1,4 +1,4 @@
-### Streamlit Pagination Components Based on https://mui.com/material-ui/react-pagination/
+### **Streamlit Pagination Components Based on https://mui.com/material-ui/react-pagination/**
 
 
 
@@ -6,8 +6,8 @@
 🚧: In Progress
 ❌: Not Started
 
-### Roadmap
-- Basic pagination : 🚧 In Progress
+### **Roadmap**
+- Basic pagination : 🚧
 - Outlined pagination : ❌
 - Rounded pagination :❌
 - Pagination size :❌
@@ -17,3 +17,12 @@
 - Controlled pagination :❌
 - Router integration :❌
 - Table pagination :❌
+
+### **How to use in Streamlit**
+
+``` py
+    from streamlit_pagination_component import streamlit_pagination
+    
+    with st.sidebar:
+        page = streamlit_pagination(5)
+```
