@@ -1,0 +1,1 @@
+recursive-include streamlit_circular_progress_component/frontend/build *
