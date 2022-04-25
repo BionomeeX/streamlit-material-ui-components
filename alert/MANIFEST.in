@@ -1,0 +1,1 @@
+recursive-include streamlit_alert_component/frontend/build *
