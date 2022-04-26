@@ -8,7 +8,7 @@
 
 ### **Roadmap**
 - Icon Only : ✅
-- Button with Icon: 🚧
+- Button with Icon: ✅
 
 ## **Icon Size**
 ``` py
