@@ -56,9 +56,6 @@ class AlertComponent extends StreamlitComponentBase<any> {
       style = {
         height: 100,
       }
-      console.log("snackbar")
-      console.log(this.state.open)
-
       component = (
         <Snackbar open={this.state.open} autoHideDuration={6000} onClose={handleClose}  >
           <Alert onClose={handleClose} variant={variant} severity={severity} sx={{ width: '100%' }}>
