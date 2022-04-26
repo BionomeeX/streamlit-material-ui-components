@@ -10,25 +10,24 @@
 - Icon Only : ✅
 - Button with Icon: 🚧
 
-### **How to use in Streamlit**
-
+## **Icon Size**
 ``` py
+from streamlit_icon_component import streamlit_icon
 
-     from streamlit_icon_component import streamlit_icon
-
-    st.header("Basic Icon (medium size)")
-    streamlit_icon("alarm_on")
-
-    st.header("Small Icon")
-    streamlit_icon("alarm_on", icon_size="small")
-
-    st.header("Large Icon")
-    streamlit_icon("alarm_on", icon_size="large")
-    
-    st.header("Button Icon")
-    streamlit_icon("delete_icon", icon_type="button", icon_size="small")
-
-    st.header("Disabled Button Icon")
-    streamlit_icon("delete_icon", icon_type="button", disabled=True, icon_size="small")
-
+streamlit_icon("delete_icon", icon_size="small")
+streamlit_icon("delete_icon", icon_size="medium")
+streamlit_icon("delete_icon", icon_size="large")
 ```
+![alt text](../.assets/icon/icon_size.png)  
+
+## **Icon Button**
+``` py   
+streamlit_icon("delete_icon", icon_type="button")
+```
+![alt text](../.assets/icon/icon_button.png)  
+
+## **Disabled Icon Button**
+``` py
+streamlit_icon("delete_icon", icon_type="button", disabled=True)
+```
+![alt text](../.assets/icon/disabled_icon_button.png)  
