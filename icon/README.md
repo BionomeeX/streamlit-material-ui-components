@@ -22,12 +22,12 @@ streamlit_icon("delete_icon", icon_size="large")
 
 ## **Icon Button**
 ``` py   
-streamlit_icon("delete_icon", icon_type="button")
+streamlit_icon("delete_icon", icon_button=True)
 ```
 ![alt text](../.assets/icon/icon_button.png)  
 
 ## **Disabled Icon Button**
 ``` py
-streamlit_icon("delete_icon", icon_type="button", disabled=True)
+streamlit_icon("delete_icon", icon_button=True, disabled=True)
 ```
 ![alt text](../.assets/icon/disabled_icon_button.png)  
