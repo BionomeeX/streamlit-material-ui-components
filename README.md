@@ -9,5 +9,5 @@ List of Material UI Components which can be adapt for Streamlit.
 - ### Pagination : https://pypi.org/project/streamlit-pagination-component/
 - ### Icon :
 - ### Circular Progress : https://pypi.org/project/streamlit-circular-progress-component/
-- ### Alert :
+- ### Alert : https://pypi.org/project/streamlit-alert-component/
 

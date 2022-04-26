@@ -5,7 +5,7 @@ import streamlit.components.v1 as components
 # the component, and True when we're ready to package and distribute it.
 # (This is, of course, optional - there are innumerable ways to manage your
 # release process.)
-_RELEASE = False
+_RELEASE = True
 
 # Declare a Streamlit component. `declare_component` returns a function
 # that is used to create instances of the component. We're naming this
@@ -43,7 +43,7 @@ else:
 # `declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
-def streamlit_alert(message, severity="info", title=None, variant="standard"):
+def streamlit_alert(message, severity="info", title=None, variant="standard", snackbar=False):
     """Create a new instance of "streamlit_alert".
 streamlit_pagination
     Parameters
@@ -70,7 +70,7 @@ streamlit_pagination
     #
     # "default" is a special argument that specifies the initial return
     # value of the component before the user has interacted with it.
-    component_value = _component_func(message=message, severity=severity, title=title, variant=variant)
+    component_value = _component_func(message=message, severity=severity, title=title, variant=variant, snackbar=snackbar)
 
     # We could modify the value returned from the component if we wanted.
     # There's no need to do this in our simple example - but it's an option.
@@ -105,14 +105,8 @@ if not _RELEASE:
     st.header("Filled alerts")
     streamlit_alert("This is an error alert — check it out!", "error", variant="filled")
 
-    # st.header("Small Icon")
-    # streamlit_icon("alarm_on", icon_size="small")
+    with st.sidebar:
+        st.header("SnackBar alerts")
+        streamlit_alert("This is an error alert — check it out!", "error", variant="filled", snackbar=True)
 
-    # st.header("Large Icon")
-    # streamlit_icon("alarm_on", icon_size="large")
-    
-    # st.header("Button Icon")
-    # streamlit_icon("delete_icon", icon_type="button", icon_size="small")
-
-    # st.header("Disabled Button Icon")
-    # streamlit_icon("delete_icon", icon_type="button", disabled=True, icon_size="small")
+    streamlit_alert("This is a success alert — check it out!", "success", snackbar=True)

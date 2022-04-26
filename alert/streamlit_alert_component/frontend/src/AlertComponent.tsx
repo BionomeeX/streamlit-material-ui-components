@@ -4,58 +4,70 @@ import {
 } from "streamlit-component-lib"
 
 import React, { ReactNode } from "react";
-import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 // the `render()` function is called when component is re-rendered
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref,
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 class AlertComponent extends StreamlitComponentBase<any> {
-
+  constructor(props: any) {
+    super(props)
+    this.state = { open: true };
+  }
   public render = (): ReactNode => {
     // Arguments that are passed to the plugin in Python are accessible
     // via `this.props.args`
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      this.setState({ open: false })
+    };
+
 
     const title = this.props.args["title"]
     const message = this.props.args["message"]
     const severity = this.props.args["severity"]
     const variant = this.props.args["variant"]
-    // const disabled = this.props.args["disabled"]
-    // const icon_size = this.props.args["icon_size"]
-    // const SelectedIcon = Icons[icon_name];
+    const snackbar = this.props.args["snackbar"]
 
-    const style = {  }
-
-    // TODO Add Color args
     let title_part = null;
     if (title != null) {
       title_part = <AlertTitle>{title}</AlertTitle>
     }
     let component = null;
+    let style = {};
 
+    if (snackbar === false) {
+      component = (
+        <Alert variant={variant} severity={severity}>
+          {title_part}
+          {message}
+        </Alert>
+      )
+    }
+    else {
+      style = {
+        height: 100,
+      }
+      console.log("snackbar")
+      console.log(this.state.open)
 
-    component = (
-      <Alert variant={variant} severity={severity}>
-        {title_part}
-        {message}
-      </Alert>
-    )
-    // if (icon_type == "button" && disabled) {
-    //   component = (
-    //     <IconButton disabled>
-    //       <Icon fontSize={icon_size}>{icon_name}</Icon>
-    //     </IconButton>
-    //   )
-    // } else if (icon_type === "button") {
-    //   component = (
-    //     <IconButton>
-
-    //       <Icon fontSize={icon_size}>{icon_name}</Icon>
-    //     </IconButton>
-    //   )
-    // } else {
-    //   component = <Icon fontSize={icon_size}>{icon_name} </Icon>
-    // }
-
+      component = (
+        <Snackbar open={this.state.open} autoHideDuration={6000} onClose={handleClose}  >
+          <Alert onClose={handleClose} variant={variant} severity={severity} sx={{ width: '100%' }}>
+            {title_part}
+            {message}
+          </Alert>
+        </Snackbar>
+      )
+    }
     return (
       <div style={style}>
         {component}

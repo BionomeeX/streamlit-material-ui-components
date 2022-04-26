@@ -14,6 +14,8 @@
 - Variants (Outlined, Filled): ✅
 - Snackers: 🚧
 
+### **Issues**
+- Snackers Position can be changed
 
 
 ## **Basic Alerts**
