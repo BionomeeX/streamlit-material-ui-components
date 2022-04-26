@@ -15,7 +15,7 @@
 - Snackers: 🚧
 
 ### **Issues**
-- Snackers Position can be changed
+- Snackers Position can't be changed
 
 
 ## **Basic Alerts**
