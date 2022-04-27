@@ -6,28 +6,32 @@ import {
 import React, { ReactNode } from "react";
 import AlertTitle from '@mui/material/AlertTitle';
 import Snackbar from '@mui/material/Snackbar';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
-// the `render()` function is called when component is re-rendered
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-  props,
-  ref,
-) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+import Alert from '@mui/material/Alert'
+
+function sendMessageToStreamlitClient(type: any, data: any) {
+  var outData = Object.assign({
+    isStreamlitMessage: true,
+    type: type,
+  }, data);
+  window.parent.postMessage(outData, "*");
+}
 
 class AlertComponent extends StreamlitComponentBase<any> {
   constructor(props: any) {
     super(props)
     this.state = { open: true };
   }
+
   public render = (): ReactNode => {
-    // Arguments that are passed to the plugin in Python are accessible
-    // via `this.props.args`
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
       if (reason === 'clickaway') {
         return;
       }
       this.setState({ open: false })
+      style = {
+        height: 0,
+      }
+      sendMessageToStreamlitClient("streamlit:setFrameHeight", { height: 0 });
     };
 
 
@@ -36,6 +40,8 @@ class AlertComponent extends StreamlitComponentBase<any> {
     const severity = this.props.args["severity"]
     const variant = this.props.args["variant"]
     const snackbar = this.props.args["snackbar"]
+    const isFirstSnackbar = this.props.args["is_first_snackbar"]
+    const paddingFromTop = this.props.args["padding_from_top"]
 
     let title_part = null;
     if (title != null) {
@@ -43,6 +49,7 @@ class AlertComponent extends StreamlitComponentBase<any> {
     }
     let component = null;
     let style = {};
+
 
     if (snackbar === false) {
       component = (
@@ -53,24 +60,38 @@ class AlertComponent extends StreamlitComponentBase<any> {
       )
     }
     else {
-      style = {
-        height: 100,
+      if (isFirstSnackbar) {
+        style = {
+          height: paddingFromTop,
+        }
+
+        component = (
+          <Snackbar open={this.state.open} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+            <Alert onClose={handleClose} variant={variant} severity={severity} sx={{ width: '100%' }} >
+              {title_part}
+              {message}
+            </Alert>
+          </Snackbar >
+        )
+      } else {
+        style = {
+          height: 100
+        }
+        component = (
+          <Snackbar open={this.state.open} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+            <Alert onClose={handleClose} variant={variant} severity={severity} sx={{ width: '100%' }} >
+              {title_part}
+              {message}
+            </Alert>
+          </Snackbar >
+        )
       }
-      component = (
-        <Snackbar open={this.state.open} autoHideDuration={6000} onClose={handleClose}  >
-          <Alert onClose={handleClose} variant={variant} severity={severity} sx={{ width: '100%' }}>
-            {title_part}
-            {message}
-          </Alert>
-        </Snackbar>
-      )
     }
     return (
-      <div style={style}>
+      <div style={style} >
         {component}
       </div>
     )
   }
 }
-
-export default withStreamlitConnection(AlertComponent)
+export default withStreamlitConnection((AlertComponent))

@@ -46,3 +46,10 @@ streamlit_alert("This is an error alert — check it out!", "error", "Error Titl
 streamlit_alert("This is an error alert — check it out!", "error", variant="filled")
 ```
 ![alt text](../.assets/alert/variants_alerts.png)  
+
+## **Snackbars Alerts**
+``` py
+streamlit_alert("This is an error alert — check it out!", "error", "Error Title", variant="outlined", snackbar=True)
+
+streamlit_alert("This is an error alert — check it out!", "error", variant="filled", snackbar=True)
+```
