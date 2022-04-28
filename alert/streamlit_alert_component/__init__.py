@@ -5,7 +5,7 @@ import streamlit.components.v1 as components
 # the component, and True when we're ready to package and distribute it.
 # (This is, of course, optional - there are innumerable ways to manage your
 # release process.)
-_RELEASE = True
+_RELEASE = False
 
 # Declare a Streamlit component. `declare_component` returns a function
 # that is used to create instances of the component. We're naming this
@@ -27,7 +27,7 @@ if not _RELEASE:
         # Pass `url` here to tell Streamlit that the component will be served
         # by the local dev server that you run via `npm run start`.
         # (This is useful while your component is in development.)
-        url="http://localhost:3001",
+        url="http://localhost:3000",
     )
 else:
     # When we're distributing a production version of the component, we'll
@@ -43,7 +43,7 @@ else:
 # `declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
-def streamlit_alert(message, severity="info", title=None, variant="standard", snackbar=False):
+def streamlit_alert(message, key=None, severity="info", title=None, variant="standard", snackbar=False):
     """Create a new instance of "streamlit_alert".
 streamlit_pagination
     Parameters
@@ -70,7 +70,7 @@ streamlit_pagination
     #
     # "default" is a special argument that specifies the initial return
     # value of the component before the user has interacted with it.
-    component_value = _component_func(message=message, severity=severity, title=title, variant=variant, snackbar=snackbar)
+    component_value = _component_func(message=message, key=key, severity=severity, title=title, variant=variant, snackbar=snackbar)
 
     # We could modify the value returned from the component if we wanted.
     # There's no need to do this in our simple example - but it's an option.
@@ -92,21 +92,17 @@ if not _RELEASE:
     # st.subheader("Component with variable args")
 
     st.header("Basic alerts")
-    streamlit_alert("This is an error alert — check it out!", "error")
-    streamlit_alert("This is a warning alert — check it out!", "warning")
-    streamlit_alert("This is an info alert — check it out!", "info")
-    streamlit_alert("This is a success alert — check it out!", "success")
+    streamlit_alert("This is an error alert — check it out!", severity="error")
+    streamlit_alert("This is a warning alert — check it out!", severity="warning")
+    streamlit_alert("This is an info alert — check it out!", severity="info")
+    streamlit_alert("This is a success alert — check it out!", severity="success")
     
     st.header("Description alerts")
-    streamlit_alert("This is an error alert — check it out!", "error", "Error Title")
+    streamlit_alert("This is an error alert — check it out!", severity="error", title="Error Title")
 
-    st.header("Outlined alerts")
-    streamlit_alert("This is an error alert — check it out!", "error", "Error Title", variant="outlined")
-    st.header("Filled alerts")
-    streamlit_alert("This is an error alert — check it out!", "error", variant="filled")
+    streamlit_alert("This is an error alert — check it out!", severity="error", title="Error Title", variant="outlined")
+    streamlit_alert("This is an error alert — check it out!", severity="error", variant="filled")
 
-    with st.sidebar:
-        st.header("SnackBar alerts")
-        streamlit_alert("This is an error alert — check it out!", "error", variant="filled", snackbar=True)
-
-    streamlit_alert("This is a success alert — check it out!", "success", snackbar=True)
+    streamlit_alert("This is a success alert — check it out!", key="b", severity="success", snackbar=True)
+    streamlit_alert("This is a success alert — check it out!", key="a", severity="success", snackbar=True)
+    

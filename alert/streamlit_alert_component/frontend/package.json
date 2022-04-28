@@ -16,7 +16,8 @@
     "@mui/icons-material": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
-    "@material-ui/icons": "latest"
+    "@material-ui/icons": "latest",
+    "@mui/styles": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

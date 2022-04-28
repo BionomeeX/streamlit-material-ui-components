@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="streamlit_pagination_component",
-    version="0.0.2",
+    version="0.0.3",
     author="",
     author_email="",
     description="",
