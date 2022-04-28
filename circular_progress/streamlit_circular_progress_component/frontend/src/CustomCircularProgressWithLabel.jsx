@@ -1,16 +1,19 @@
 import * as React from 'react';
-import CircularProgress, {
-    CircularProgressProps,
-} from '@mui/material/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { makeStyles } from "@mui/styles";
 
-function CircularProgressWithLabel(
-    props: CircularProgressProps & { value: number },
-) {
+const useStyles = makeStyles({
+});
+
+export default function CustomCircularProgressWithLabel(props) {
+    const styleProps = {
+    };
+    const classes = useStyles(styleProps);
     return (
         <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-            <CircularProgress variant="determinate" {...props} />
+            <CircularProgress variant={props.variant} {...props} />
             <Box
                 sx={{
                     top: 0,
@@ -32,4 +35,3 @@ function CircularProgressWithLabel(
         </Box>
     );
 }
-export default CircularProgressWithLabel;

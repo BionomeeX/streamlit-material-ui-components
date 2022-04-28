@@ -27,7 +27,7 @@ if not _RELEASE:
         # Pass `url` here to tell Streamlit that the component will be served
         # by the local dev server that you run via `npm run start`.
         # (This is useful while your component is in development.)
-        url="http://localhost:3001",
+        url="http://localhost:3000",
     )
 else:
     # When we're distributing a production version of the component, we'll
@@ -43,7 +43,7 @@ else:
 # `declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
-def streamlit_circular_progress(value=-1, enable_label=False):
+def streamlit_circular_progress(value=None, key=None, variant="indeterminate", enable_label=False):
     """Create a new instance of "streamlit_circular_progress".
 streamlit_pagination
     Parameters
@@ -70,7 +70,7 @@ streamlit_pagination
     #
     # "default" is a special argument that specifies the initial return
     # value of the component before the user has interacted with it.
-    component_value = _component_func(value=value, enable_label=enable_label)
+    component_value = _component_func(value=value, key=key, variant=variant, enable_label=enable_label)
 
     # We could modify the value returned from the component if we wanted.
     # There's no need to do this in our simple example - but it's an option.
@@ -93,9 +93,11 @@ if not _RELEASE:
 
     st.header("Indeterminate Progress")
     streamlit_circular_progress()
+    streamlit_circular_progress(key="a", variant="indeterminate")
 
     st.header("Determinate Progress")
-    streamlit_circular_progress(15)
+    streamlit_circular_progress(35, variant="determinate")
 
     st.header("Circular with label")
-    streamlit_circular_progress(39, True)
+    streamlit_circular_progress(39, variant="determinate", enable_label=True)
+    streamlit_circular_progress(39, variant="indeterminate", enable_label=True)
