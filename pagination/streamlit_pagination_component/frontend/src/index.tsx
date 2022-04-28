@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import PaginationComponent from "./PaginationComponent"
+import PaginationComponent from "./PaginationComponent.jsx"
 
 ReactDOM.render(
   <React.StrictMode>

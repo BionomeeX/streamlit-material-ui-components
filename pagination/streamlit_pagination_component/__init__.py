@@ -5,7 +5,7 @@ import streamlit.components.v1 as components
 # the component, and True when we're ready to package and distribute it.
 # (This is, of course, optional - there are innumerable ways to manage your
 # release process.)
-_RELEASE = True
+_RELEASE = False
 
 # Declare a Streamlit component. `declare_component` returns a function
 # that is used to create instances of the component. We're naming this
@@ -27,7 +27,7 @@ if not _RELEASE:
         # Pass `url` here to tell Streamlit that the component will be served
         # by the local dev server that you run via `npm run start`.
         # (This is useful while your component is in development.)
-        url="http://localhost:3001",
+        url="http://localhost:3000",
     )
 else:
     # When we're distributing a production version of the component, we'll
@@ -43,7 +43,7 @@ else:
 # `declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
-def streamlit_pagination(page, default=1):
+def streamlit_pagination(page, default=1, key=None, variant="text", shape="circular", background_color=None, background_hover_color=None, background_selected_color=None, text_color=None, text_hover_color=None):
     """Create a new instance of "streamlit_pagination_component".
 streamlit_pagination
     Parameters
@@ -70,7 +70,10 @@ streamlit_pagination
     #
     # "default" is a special argument that specifies the initial return
     # value of the component before the user has interacted with it.
-    component_value = _component_func(number_of_page=page, default=default)
+    component_value = _component_func(number_of_page=page, default=default, key=key, \
+        variant=variant, shape=shape, \
+        background_color=background_color, background_hover_color=background_hover_color, \
+        background_selected_color=background_selected_color, text_color=text_color, text_hover_color=text_hover_color)
 
     # We could modify the value returned from the component if we wanted.
     # There's no need to do this in our simple example - but it's an option.
@@ -94,3 +97,16 @@ if not _RELEASE:
 
     count = streamlit_pagination(page=10)
 
+    count = streamlit_pagination(
+        page=9,
+        background_color="#0f4763",
+        background_hover_color="#ECF7F1",
+        background_selected_color="#067fbd",
+        text_color="#ECF7F1",
+        text_hover_color="#3D3B3B")
+
+    page = streamlit_pagination(page=8, variant="outlined")
+    page = streamlit_pagination(page=7, variant="text")
+
+    page = streamlit_pagination(page=10, shape="rounded", key="rounded")
+    page = streamlit_pagination(page=10, shape="circular", key="circular")
