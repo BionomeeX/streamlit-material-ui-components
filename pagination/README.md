@@ -54,10 +54,10 @@ def streamlit_pagination(
 > ***shape***: The variant to use (circular | rounded)
 
 - ### Colors
-> ***background_color***: Background color of not selected items 
-> ***background_hover_color***: Background color of hovered item  
-> ***background_selected_color***: Background color of selected item 
-> ***text_color***: Text color of items 
+> ***background_color***: Background color of not selected items  
+> ***background_hover_color***: Background color of hovered item   
+> ***background_selected_color***: Background color of selected item  
+> ***text_color***: Text color of items  
 > ***text_hover_color***: Text color of hovered item 
 
 
@@ -83,3 +83,5 @@ page = streamlit_pagination(page=10, variant="text")
 page = streamlit_pagination(page=10, shape="rounded")
 page = streamlit_pagination(page=10, shape="circular")
 ```
+
+![alt text](../.assets/pagination/style_pagination.png) 
