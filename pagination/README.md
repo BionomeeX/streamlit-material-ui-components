@@ -9,7 +9,8 @@
 ❌: Not Started
 - Basic pagination : ✅
 - Variant pagination : ✅
-- Rounded pagination :❌
+- Shape pagination : ✅
+- Colors: ✅
 - Pagination size :❌
 - Buttons : ❌
 - Custom icons :❌
@@ -19,12 +20,9 @@
 - Table pagination :❌
 
 
-
 # 📚 Documentation
 ``` py
 from streamlit_pagination_component import streamlit_pagination
-
-
 ```
 ## 🔧 Functions
 ``` py
@@ -68,7 +66,7 @@ def streamlit_pagination(
 with st.sidebar:
     page = streamlit_pagination(page=10)
 ```
-![alt text](../.assets/pagination/basic_pagination.png)  
+<img src="../.assets/pagination/basic_pagination.png" width="350"> 
 
 ## Variants Pagination
 ``` py
@@ -76,7 +74,7 @@ page = streamlit_pagination(page=10, variant="outlined")
 page = streamlit_pagination(page=10, variant="text")
 ```
 
-![alt text](../.assets/pagination/variants_pagination.png) 
+<img src="../.assets/pagination/variants_pagination.png" width="350">
 
 ## Shaped Pagination
 ``` py
@@ -84,4 +82,4 @@ page = streamlit_pagination(page=10, shape="rounded")
 page = streamlit_pagination(page=10, shape="circular")
 ```
 
-![alt text](../.assets/pagination/style_pagination.png) 
+<img src="../.assets/pagination/style_pagination.png" width="350">
