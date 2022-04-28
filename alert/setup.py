@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="streamlit_alert_component",
-    version="0.0.4",
+    version="0.0.6",
     author="",
     author_email="",
     description="",

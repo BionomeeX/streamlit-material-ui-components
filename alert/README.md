@@ -40,7 +40,8 @@ def streamlit_alert(
 > ***title***: Display a formatted title above the content.  
 > ***snackbar***: Alert is a snackbar see (https://mui.com/material-ui/react-snackbar/).
 
-## **Basic Alerts**
+# 🎨 Demos
+## Basic Alerts
 ``` py
 streamlit_alert("This is an error alert — check it out!", severity="error")
 streamlit_alert("This is a warning alert — check it out!", severity="warning")
@@ -49,8 +50,6 @@ streamlit_alert("This is a success alert — check it out!", severity="success")
 ```
 <img src="../.assets/alert/basic_alerts.png" width="450"> 
 
-
-# 🎨 Demos
 ## Description Alerts
 ``` py 
 streamlit_alert("This is an error alert — check it out!", severity="error", title="Error Title")
